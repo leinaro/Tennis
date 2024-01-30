@@ -1,0 +1,47 @@
+val scores = listOf(0, 15, 30, 40)
+
+data class Player(
+    val name: String
+){
+    var pivot: Int = 0
+	
+    fun getScore() = scores[pivot]
+    
+    fun earnPoint(){
+        pivot++
+        println(name+" "+scores[pivot])
+    }
+}
+
+class Game(
+    val player1: Player, val player2: Player
+)
+
+fun main(){
+    val player1 = Player("Anna")
+ 	val player2 = Player("Pedro")
+    
+    var advantagePlayer: Player? = null
+    var winner: Player? = null
+    
+    while(winner == null){
+        if(player2.getScore() == 40  && player2 == advantagePlayer) {
+            println(player2.name + " Wins")
+            break;
+        } 
+        if(player1.getScore() == 40  && player1 == advantagePlayer) {
+            println(player1.name + " Wins")
+            break;
+        } 
+       
+        if(player2.getScore() == 40 && player1.getScore() == 40){
+            advantagePlayer = player1
+            println(advantagePlayer.name + " Advange")
+            
+        } else {
+            player1.earnPoint()
+        	player2.earnPoint()
+        } 
+    }
+}
+
